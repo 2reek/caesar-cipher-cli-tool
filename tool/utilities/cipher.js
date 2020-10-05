@@ -1,5 +1,12 @@
-const caesarCipher = (string, shift) => {
-  if (shift < 0) return caesarCipher(string, shift + 26);
+const chalk = require('chalk');
+
+const doCipherText = (string, shift) => {
+  if (typeof shift !== 'number') {
+    process.stderr.write(chalk.red.bold('invalid input data type\n'));
+    process.exit(400);
+  }
+
+  if (shift < 0) return doCipherText(string, shift + 26);
 
   let output = '';
 
@@ -22,4 +29,4 @@ const caesarCipher = (string, shift) => {
   return output;
 };
 
-module.exports = caesarCipher;
+module.exports = doCipherText;
